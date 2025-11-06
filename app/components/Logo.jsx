@@ -13,10 +13,10 @@ export default function Logo({ compact = false }) {
       </div>
 
       <div className={`${compact ? "hidden" : "block"}`}>
-        <div className="text-lg font-extrabold tracking-tight text-gray-900">
+        <div className="text-lg font-extrabold tracking-tight text-white-500">
           Travelo
         </div>
-        <div className="text-xs text-white-500">
+        <div className="text-xs text-yellow-300">
           Curated journeys • Local experts
         </div>
       </div>

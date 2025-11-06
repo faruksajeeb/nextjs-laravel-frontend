@@ -1,6 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Facebook, Instagram, Twitter } from "lucide-react";
+const socialIcons = [
+  { name: "facebook", icon: Facebook, href: "#" },
+  { name: "instagram", icon: Instagram, href: "#" },
+  { name: "twitter", icon: Twitter, href: "#" },
+];
+
 import Link from "next/link";
 import ScrollToTop from "./ScrollToTop";
 
@@ -17,8 +24,10 @@ export default function BigFooter() {
     e.preventDefault();
     setStatus({ ok: null, msg: "" });
 
-    if (!email.trim()) return setStatus({ ok: false, msg: "Please enter your email." });
-    if (!validateEmail(email)) return setStatus({ ok: false, msg: "Invalid email address." });
+    if (!email.trim())
+      return setStatus({ ok: false, msg: "Please enter your email." });
+    if (!validateEmail(email))
+      return setStatus({ ok: false, msg: "Invalid email address." });
 
     setLoading(true);
     try {
@@ -51,24 +60,29 @@ export default function BigFooter() {
               TA
             </div>
             <div>
-              <div className="text-xl font-extrabold tracking-wide">Travelo</div>
-              <div className="text-sm opacity-80">Curated journeys & guides</div>
+              <div className="text-xl font-extrabold tracking-wide">
+                Travelo
+              </div>
+              <div className="text-sm opacity-80">
+                Curated journeys & guides
+              </div>
             </div>
           </Link>
 
           <p className="text-sm opacity-90 mt-4 max-w-sm">
-            Your trusted travel partner — connecting you with the world through unforgettable experiences.
+            Your trusted travel partner — connecting you with the world through
+            unforgettable experiences.
           </p>
 
           <div className="mt-6 flex items-center gap-3">
-            {["facebook", "instagram", "twitter"].map((icon) => (
+            {socialIcons.map(({ name, icon: Icon, href }) => (
               <a
-                key={icon}
-                href="#"
-                aria-label={icon}
-                className="p-2 rounded-md bg-white/20 hover:bg-white/30 transition"
+                key={name}
+                href={href}
+                aria-label={name}
+                className="p-2 rounded-md bg-white/20 hover:bg-white/30 hover:scale-110 transition-all duration-300"
               >
-                <i className={`ri-${icon}-fill text-lg`}></i>
+                <Icon className="w-5 h-5 text-white" />
               </a>
             ))}
           </div>
@@ -84,10 +98,18 @@ export default function BigFooter() {
           </p>
 
           <div className="mt-6 grid grid-cols-2 gap-2 text-sm">
-            <Link href="/about" className="hover:underline">About</Link>
-            <Link href="/packages" className="hover:underline">Packages</Link>
-            <Link href="/destinations" className="hover:underline">Destinations</Link>
-            <Link href="/contact" className="hover:underline">Contact</Link>
+            <Link href="/about" className="hover:underline">
+              About
+            </Link>
+            <Link href="/packages" className="hover:underline">
+              Packages
+            </Link>
+            <Link href="/destinations" className="hover:underline">
+              Destinations
+            </Link>
+            <Link href="/contact" className="hover:underline">
+              Contact
+            </Link>
           </div>
         </div>
 
@@ -98,7 +120,10 @@ export default function BigFooter() {
             Join our tribe of travelers for exclusive deals & inspiration.
           </p>
 
-          <form onSubmit={subscribe} className="mt-4 flex items-center max-w-md">
+          <form
+            onSubmit={subscribe}
+            className="mt-4 flex items-center max-w-md"
+          >
             <input
               type="email"
               value={email}
@@ -117,7 +142,9 @@ export default function BigFooter() {
 
           <div className="mt-3 text-sm">
             {status.ok && <div className="text-green-100">{status.msg}</div>}
-            {status.ok === false && <div className="text-yellow-200">{status.msg}</div>}
+            {status.ok === false && (
+              <div className="text-yellow-200">{status.msg}</div>
+            )}
           </div>
         </div>
       </div>
@@ -126,11 +153,15 @@ export default function BigFooter() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-sm opacity-80">
           <div>© {new Date().getFullYear()} Travelo. All rights reserved.</div>
           <div className="flex items-center gap-4">
-            <Link href="/privacy" className="hover:underline">Privacy</Link>
-            <Link href="/terms" className="hover:underline">Terms</Link>
+            <Link href="/privacy" className="hover:underline">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:underline">
+              Terms
+            </Link>
           </div>
-            {/* Go to Top Button */}
-            <ScrollToTop/>
+          {/* Go to Top Button */}
+          <ScrollToTop />
         </div>
       </div>
     </footer>

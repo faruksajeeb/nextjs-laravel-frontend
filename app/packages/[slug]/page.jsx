@@ -1,8 +1,8 @@
 // app/packages/[slug]/page.jsx
-"use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { notFound } from "next/navigation";
+import Garray from "./Gallary";
+import BookingForm from "./BookingForm";
 
 /* --- sample packages list (replace or fetch from API) --- */
 const PACKAGES = [
@@ -38,64 +38,55 @@ const PACKAGES = [
   // add other packages as needed
 ];
 
+export async function generateMetadata({ params }) {
+  const { slug } = params || {};
+  const pkg = PACKAGES.find((p) => p.slug === slug);
+
+  if (!pkg) {
+    return {
+      title: "Package not found",
+      description: "The package you are looking for does not exist.",
+    };
+  }
+
+  return {
+    title: pkg.title,
+    description: pkg.overview,
+    openGraph: {
+      title: pkg.title,
+      description: pkg.overview,
+      type: "website",
+      images: [
+        {
+          url: pkg.hero,
+          width: 1200,
+          height: 630,
+          alt: pkg.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pkg.title,
+      description: pkg.overview,
+      images: [pkg.hero],
+    },
+  };
+}
+
 export default function PackageDetail({ params }) {
   const { slug } = params || {};
   const pkg = PACKAGES.find((p) => p.slug === slug);
 
   // Not found
   if (!pkg) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-black text-white">
-        <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-4">Package not found</h2>
-          <p className="text-gray-400 mb-6">We couldn't find the package you're looking for.</p>
-          <Link href="/packages" className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md">
-            Back to packages
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   return <ClientPackageDetail pkg={pkg} />;
 }
 
-/* -------------------------------------------------
-   Client-side detail component (lightbox / booking)
-   ------------------------------------------------- */
 function ClientPackageDetail({ pkg }) {
-  const [selectedImg, setSelectedImg] = useState(null);
-  const [date, setDate] = useState("");
-  const [travelers, setTravelers] = useState(1);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    // lock scroll when lightbox open
-    document.body.style.overflow = selectedImg ? "hidden" : "";
-    return () => (document.body.style.overflow = "");
-  }, [selectedImg]);
-
-  function openLightbox(src) {
-    setSelectedImg(src);
-  }
-  function closeLightbox() {
-    setSelectedImg(null);
-  }
-
-  async function requestBooking() {
-    if (!date) {
-      alert("Please select a travel date.");
-      return;
-    }
-    setLoading(true);
-    try {
-      // example: navigate to booking page with prefilled params
-      const url = `/booking?pkg=${encodeURIComponent(pkg.slug)}&date=${encodeURIComponent(date)}&travelers=${travelers}`;
-      window.location.href = url;
-    } finally {
-      setLoading(false);
-    }
-  }
 
   return (
     <>
@@ -191,110 +182,14 @@ function ClientPackageDetail({ pkg }) {
           </div>
 
           {/* gallery */}
-          <section className="bg-white/5 backdrop-blur-md p-6 rounded-2xl shadow-lg">
-            <h3 className="font-semibold">Gallery</h3>
-            <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {pkg.gallery.map((g, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => openLightbox(g)}
-                  className="overflow-hidden rounded-lg focus:outline-none"
-                  aria-label={`Open image ${idx + 1}`}
-                >
-                  <img src={g} alt={`${pkg.title} ${idx + 1}`} className="w-full h-28 object-cover transform hover:scale-105 transition" />
-                </button>
-              ))}
-            </div>
-          </section>
+          <Garray pkg={pkg}/>
         </div>
 
         {/* sidebar */}
-        <aside className="lg:col-span-1">
-          <div className="sticky top-6 bg-white/6 backdrop-blur-md border border-white/8 rounded-2xl p-5 shadow-xl">
-            <div className="text-sm text-gray-300">Starting from</div>
-            <div className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-300 to-orange-400">
-              ৳{Number(pkg.price).toLocaleString()}
-            </div>
-            <div className="text-xs text-gray-400 mt-1">per person</div>
-
-            <div className="mt-4">
-              <label className="text-sm text-gray-300">Travel Date</label>
-              <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="mt-1 w-full p-3 rounded-lg bg-white/6 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-            </div>
-
-            <div className="mt-3">
-              <label className="text-sm text-gray-300">Travelers</label>
-              <select
-                value={travelers}
-                onChange={(e) => setTravelers(Number(e.target.value))}
-                className="mt-1 w-full p-3 rounded-lg bg-white/6 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                {Array.from({ length: 8 }, (_, i) => i + 1).map((n) => (
-                  <option key={n} value={n}>
-                    {n}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <button
-              onClick={requestBooking}
-              disabled={loading}
-              className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-pink-500 text-white px-4 py-3 rounded-lg font-semibold shadow-md hover:scale-105 transition disabled:opacity-60"
-            >
-              {loading ? "Processing…" : "Request Booking"}
-            </button>
-
-            <div className="mt-4 text-sm text-gray-400">
-              <div>Flexible cancellation — free within 7 days.</div>
-            </div>
-
-            <div className="mt-4">
-              <Link href="/packages" className="text-sm text-indigo-300 hover:underline">
-                ← Back to packages
-              </Link>
-            </div>
-          </div>
-
-          <div className="mt-4 p-4 bg-white/6 rounded-lg shadow-sm text-sm text-gray-300">
-            <div className="font-semibold">Need help?</div>
-            <div className="mt-2">
-              Contact our travel specialists:
-              <br />
-              <a href="tel:+8801234567890" className="text-indigo-300 hover:underline">+880 1234 567890</a>
-              <br />
-              <a href="mailto:info@travelo.com" className="text-indigo-300 hover:underline">info@travelo.com</a>
-            </div>
-          </div>
-        </aside>
+        <BookingForm pkg={pkg}/>
       </main>
 
-      {/* lightbox */}
-      {selectedImg && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
-          onClick={closeLightbox}
-        >
-          <button
-            aria-label="Close image"
-            className="absolute top-6 right-6 text-white text-2xl"
-            onClick={closeLightbox}
-          >
-            ✕
-          </button>
-          <img
-            src={selectedImg}
-            alt="Preview"
-            className="max-h-[90vh] max-w-[90vw] rounded-lg shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+     
     </>
   );
 }
