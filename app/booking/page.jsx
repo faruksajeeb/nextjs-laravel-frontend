@@ -1,10 +1,12 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function BookingPage({ searchParams }) {
   // Optional: prefill package from query string ?pkg=bali-7d
-  const prefillPackage = searchParams?.pkg || "";
+   // unwrap the searchParams object
+  const params = React.use(searchParams);
+  const prefillPackage = params?.pkg || "";
 
   const [form, setForm] = useState({
     fullName: "",

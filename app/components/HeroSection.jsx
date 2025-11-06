@@ -17,17 +17,17 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-indigo-50 via-white to-indigo-100 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-indigo-50 via-black to-indigo-100 overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop"
+          src="https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg"
           alt="Travel background"
           className="w-full h-full object-cover opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-indigo-800/50 to-transparent"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-30 lg:py-48 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-30 lg:py-40 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* Left Content */}
         <div className="space-y-6 text-white">
           <h2 className="text-4xl sm:text-5xl font-extrabold leading-tight drop-shadow-md">
@@ -40,7 +40,7 @@ export default function HeroSection() {
 
           <div className="flex gap-3">
             <Link
-              className="inline-flex items-center gap-2 bg-white text-indigo-700 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-indigo-50 transition-transform transform hover:scale-105"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-indigo-600  text-white-700 border border-white/60  font-semibold px-6 py-3 rounded-full shadow-md hover:bg-indigo-50 transition-transform transform hover:scale-105"
               href="/packages"
             >
               🌎 Explore Packages

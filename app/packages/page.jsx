@@ -1,8 +1,7 @@
 // app/packages/page.jsx
 "use client";
-
 import { useMemo, useState } from "react";
-import Link from "next/link";
+import PackageGrid from "./PackageGrid";
 
 export default function PackagesPage() {
   const [query, setQuery] = useState("");
@@ -34,13 +33,13 @@ export default function PackagesPage() {
     },
     {
       id: "swiss-10d",
-      title: "10-Day Swiss Alps",
+      title: "10-Day Swiss Alps Adventure",
       duration: 10,
       price: 17990,
       region: "Europe",
       tags: ["mountains", "hiking"],
       slug: "/packages/swiss-10d",
-      excerpt: "Alpine scenery, cable cars and cozy chalets.",
+      excerpt: "Alpine scenery, cable cars, and cozy chalets in Switzerland.",
       img: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop",
     },
     {
@@ -51,10 +50,99 @@ export default function PackagesPage() {
       region: "Africa",
       tags: ["wildlife", "adventure"],
       slug: "/packages/safari-8d",
-      excerpt: "City culture + safari game drives to see the Big Five.",
+      excerpt: "City culture + safari game drives to see the Big Five in South Africa.",
       img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop",
     },
+    {
+      id: "iceland-6d",
+      title: "6-Day Iceland Ring Road",
+      duration: 6,
+      price: 11500,
+      region: "Europe",
+      tags: ["nature", "adventure"],
+      slug: "/packages/iceland-6d",
+      excerpt: "Waterfalls, glaciers, black sand beaches, and Northern Lights potential.",
+      img: "https://images.unsplash.com/photo-1506765518292-6284f33b1e32?q=80&w=1200&auto=format&fit=crop",
+    },
+    {
+      id: "nyc-4d",
+      title: "4-Day NYC City Break",
+      duration: 4,
+      price: 5200,
+      region: "North America",
+      tags: ["city", "culture"],
+      slug: "/packages/nyc-4d",
+      excerpt: "The best of Manhattan: Broadway, museums, and iconic landmarks.",
+      img: "https://images.unsplash.com/photo-1541336021430-81f7259c8490?q=80&w=1200&auto=format&fit=crop",
+    },
+    {
+      id: "rome-7d",
+      title: "7-Day Ancient Rome Tour",
+      duration: 7,
+      price: 9500,
+      region: "Europe",
+      tags: ["history", "food"],
+      slug: "/packages/rome-7d",
+      excerpt: "Explore the Colosseum, Vatican City, and enjoy authentic Italian cuisine.",
+      img: "https://images.unsplash.com/photo-1517478810756-c0c1737e8c33?q=80&w=1200&auto=format&fit=crop",
+    },
+    {
+      id: "patagonia-12d",
+      title: "12-Day Patagonia Trek",
+      duration: 12,
+      price: 19800,
+      region: "South America",
+      tags: ["mountains", "adventure"],
+      slug: "/packages/patagonia-12d",
+      excerpt: "Glaciers, remote trails, and stunning wilderness in Argentina and Chile.",
+      img: "https://images.unsplash.com/photo-1533518464309-8b093358055c?q=80&w=1200&auto=format&fit=crop",
+    },
+    {
+      id: "galapagos-9d",
+      title: "9-Day Galapagos Wildlife Cruise",
+      duration: 9,
+      price: 22000,
+      region: "South America",
+      tags: ["wildlife", "marine"],
+      slug: "/packages/galapagos-9d",
+      excerpt: "An intimate cruise exploring unique endemic species and volcanic islands.",
+      img: "https://images.unsplash.com/photo-1516235123909-24238e83160a?q=80&w=1200&auto=format&fit=crop",
+    },
+    {
+      id: "thailand-14d",
+      title: "14-Day Thailand Grand Tour",
+      duration: 14,
+      price: 11990,
+      region: "Asia",
+      tags: ["beach", "food", "city"],
+      slug: "/packages/thailand-14d",
+      excerpt: "Bangkok\'s buzz, northern temples, and island hopping in the south.",
+      img: "https://images.unsplash.com/photo-1506973035817-69974c050942?q=80&w=1200&auto=format&fit=crop",
+    },
+    {
+      id: "peru-8d",
+      title: "8-Day Machu Picchu & Cusco",
+      duration: 8,
+      price: 13500,
+      region: "South America",
+      tags: ["history", "hiking"],
+      slug: "/packages/peru-8d",
+      excerpt: "Trek the Inca Trail or take the scenic route to the lost city of the Incas.",
+      img: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop",
+    },
+    {
+      id: "egypt-6d",
+      title: "6-Day Nile & Pyramids",
+      duration: 6,
+      price: 9900,
+      region: "Africa",
+      tags: ["history", "culture"],
+      slug: "/packages/egypt-6d",
+      excerpt: "A deep dive into ancient Egyptian civilization with a short Nile cruise.",
+      img: "https://images.unsplash.com/photo-1601362772596-f9435b86e09c?q=80&w=1200&auto=format&fit=crop",
+    },
   ];
+
 
   // filter logic (note: budget threshold set to ৳9000)
   const filtered = useMemo(() => {
@@ -168,74 +256,7 @@ export default function PackagesPage() {
       {/* grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filtered.map((pkg) => (
-          <article
-            key={pkg.id}
-            className="relative rounded-2xl overflow-hidden shadow-xl transform hover:scale-[1.02] transition bg-white/5 backdrop-blur-md border border-white/10 flex flex-col"
-          >
-            {/* image */}
-            <div
-              className="h-48 bg-center bg-cover"
-              style={{ backgroundImage: `url(${pkg.img})` }}
-              role="img"
-              aria-label={pkg.title}
-            />
-
-            {/* content */}
-            <div className="p-5 flex-1 flex flex-col">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="font-semibold text-white text-lg">{pkg.title}</h3>
-                  <p className="text-sm text-gray-300 mt-1">
-                    {pkg.region} • {pkg.duration} days
-                  </p>
-                </div>
-
-                <div className="text-right">
-                  <div className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-300 to-orange-400">
-                    ৳{pkg.price.toLocaleString()}
-                  </div>
-                  <div className="text-xs text-gray-400">per person</div>
-                </div>
-              </div>
-
-              <p className="text-gray-300 mt-3 text-sm flex-1">{pkg.excerpt}</p>
-
-              <div className="mt-4 flex items-center justify-between">
-                <div className="flex gap-2 flex-wrap">
-                  {pkg.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs px-2 py-1 rounded-full bg-white/6 text-white/90 border border-white/5"
-                    >
-                      #{t}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-2">
-                  <Link
-                    href={pkg.slug}
-                    className="relative inline-flex items-center gap-2 px-3 py-2 rounded-lg text-white text-sm font-medium
-                    bg-white/10 hover:bg-white/20 transition shadow"
-                  >
-                    View Details
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M12 5l7 7-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </Link>
-
-                  <Link
-                    href={`/booking?pkg=${encodeURIComponent(pkg.slug)}`}
-                    className="inline-flex items-center px-3 py-2 rounded-lg text-sm font-semibold
-                    bg-gradient-to-r from-indigo-500 to-pink-500 text-white shadow-md hover:scale-[1.02] transition"
-                  >
-                    Book Now
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </article>
+          <PackageGrid key={pkg.id} pkg={pkg} />
         ))}
 
         {filtered.length === 0 && (
