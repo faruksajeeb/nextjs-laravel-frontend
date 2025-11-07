@@ -1,38 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌍 Travelo — Next.js Travel & Tour Template
 
-## Getting Started
+**Travelo** is a modern, responsive **Next.js** travel and tour website template built with **Tailwind CSS**.  
+It’s designed for **travel agencies**, **tour operators**, and **destination booking platforms** looking for speed, SEO performance, and a stunning user experience.
 
-First, run the development server:
+---
 
-```bash
+## 🚀 Demo
+
+**Live Preview:** [https://your-demo.vercel.app](https://your-demo.vercel.app)  
+**Author:** [Your Name or Brand]  
+**Version:** 1.0.0  
+**Release Date:** November 2025  
+
+---
+
+## 🧩 Features
+
+- ⚡ Built with **Next.js 14 (App Router)**  
+- 🎨 Styled using **Tailwind CSS**  
+- 📱 100% Responsive and Mobile-friendly  
+- 🔍 **SEO-optimized** meta and image structure  
+- 🗺️ Pre-built pages: Home, Destinations, Tours, About, Blog, Contact  
+- 🧱 Reusable React components  
+- 🌐 Easy deployment on **Vercel**, **Netlify**, or custom servers  
+- 🧾 Well-documented and developer-friendly code  
+- 💡 Supports `.env` environment configuration  
+
+---
+
+## 🛠️ Installation Guide
+
+### Prerequisites
+- Node.js **v18+**
+- npm **v9+** or **yarn**
+
+### Steps to Run Locally
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/faruksajeeb/nextjs-laravel-frontend
+   cd nextjs-laravel-frontend
+
+### Install dependencies
+
+npm install
+# or
+yarn install
+
+
+### Setup environment variables
+
+cp .env.example .env
+
+
+Open .env and add your API keys, site title, or analytics tokens.
+
+### Run the development server
+
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Visit http://localhost:3000
+ to preview your app.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Build for production
 
-## Learn More
+npm run build
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Preview the production build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+npm run start
+# or if you added preview script
+npm run preview
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# nextjs-laravel-frontend
-# nextjs-laravel-frontend
+### 📁 Folder Structure
+travelx/
+├─ app/ or pages/          # Next.js pages
+├─ components/             # Reusable UI components
+├─ public/                 # Static assets (images, icons, favicon)
+├─ styles/                 # Global & module CSS (Tailwind)
+├─ lib/                    # Helper functions / API integration
+├─ data/                   # Mock JSON or API data
+├─ .env.example            # Example environment variables
+├─ package.json            # Dependencies & scripts
+├─ next.config.js          # Next.js configuration
+├─ tailwind.config.js      # Tailwind configuration
+└─ README.md               # Documentation
