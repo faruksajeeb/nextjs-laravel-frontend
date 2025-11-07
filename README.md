@@ -7,7 +7,7 @@ It’s designed for **travel agencies**, **tour operators**, and **destination b
 
 ## 🚀 Demo
 
-**Live Preview:** [https://nextjs-laravel-frontend-l4ld-ow8vuf2pd-faruksajeebs-projects.vercel.app/](https://https://nextjs-laravel-frontend-l4ld-ow8vuf2pd-faruksajeebs-projects.vercel.app/.app)  
+**Live Preview:** [https://nextjs-laravel-frontend-l4ld-ow8vuf2pd-faruksajeebs-projects.vercel.app/](https://https://nextjs-laravel-frontend-l4ld-ow8vuf2pd-faruksajeebs-projects.vercel.app)  
 **Author:** [Mohammad Omar Faruk]  
 **Version:** 1.0.0  
 **Release Date:** November 2025  
