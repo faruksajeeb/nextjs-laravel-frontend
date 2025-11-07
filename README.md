@@ -7,8 +7,8 @@ It’s designed for **travel agencies**, **tour operators**, and **destination b
 
 ## 🚀 Demo
 
-**Live Preview:** [https://your-demo.vercel.app](https://your-demo.vercel.app)  
-**Author:** [Your Name or Brand]  
+**Live Preview:** [https://nextjs-laravel-frontend-l4ld-ow8vuf2pd-faruksajeebs-projects.vercel.app/](https://https://nextjs-laravel-frontend-l4ld-ow8vuf2pd-faruksajeebs-projects.vercel.app/.app)  
+**Author:** [Mohammad Omar Faruk]  
 **Version:** 1.0.0  
 **Release Date:** November 2025  
 
@@ -41,13 +41,12 @@ It’s designed for **travel agencies**, **tour operators**, and **destination b
    git clone https://github.com/faruksajeeb/nextjs-laravel-frontend
    cd nextjs-laravel-frontend
 
-### Install dependencies
-
-npm install
-# or
-yarn install
-
-
+### 🧩 Install Dependencies
+    ```bash
+    npm install
+    # or
+    yarn install
+    
 ### Setup environment variables
 
 cp .env.example .env
