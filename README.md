@@ -48,43 +48,42 @@ It’s designed for **travel agencies**, **tour operators**, and **destination b
     yarn install
     
 ### Setup environment variables
+    ```bash
+    cp .env.example .env
 
-cp .env.example .env
-
-
-Open .env and add your API keys, site title, or analytics tokens.
+    Open .env and add your API keys, site title, or analytics tokens.
 
 ### Run the development server
+    ```bash
+    npm run dev
+    # or
+    yarn dev
 
-npm run dev
-# or
-yarn dev
 
-
-Visit http://localhost:3000
- to preview your app.
+Visit http://localhost:3000 to preview your app.
 
 ### Build for production
-
-npm run build
+    ```bash
+    npm run build
 
 
 ### Preview the production build
-
-npm run start
-# or if you added preview script
-npm run preview
+    ```bash
+    npm run start
+    # or if you added preview script
+    npm run preview
 
 ### 📁 Folder Structure
-travelx/
-├─ app/ or pages/          # Next.js pages
-├─ components/             # Reusable UI components
-├─ public/                 # Static assets (images, icons, favicon)
-├─ styles/                 # Global & module CSS (Tailwind)
-├─ lib/                    # Helper functions / API integration
-├─ data/                   # Mock JSON or API data
-├─ .env.example            # Example environment variables
-├─ package.json            # Dependencies & scripts
-├─ next.config.js          # Next.js configuration
-├─ tailwind.config.js      # Tailwind configuration
-└─ README.md               # Documentation
+    ```bash
+    travelx/
+    ├─ app/ or pages/          # Next.js pages
+    ├─ components/             # Reusable UI components
+    ├─ public/                 # Static assets (images, icons, favicon)
+    ├─ styles/                 # Global & module CSS (Tailwind)
+    ├─ lib/                    # Helper functions / API integration
+    ├─ data/                   # Mock JSON or API data
+    ├─ .env.example            # Example environment variables
+    ├─ package.json            # Dependencies & scripts
+    ├─ next.config.js          # Next.js configuration
+    ├─ tailwind.config.js      # Tailwind configuration
+    └─ README.md               # Documentation
